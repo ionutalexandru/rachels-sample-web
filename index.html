@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Sample website</title>
+    <meta name="description" content="Sample website" />
+    <meta name="author" content="Ionut" />
+  </head>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    img#cover {
+      position: absolute;
+      z-index: 0;
+      top: 0%;
+      left: 50%;
+      height: auto;
+      width: 50%;
+    }
+
+    a#email {
+      position: absolute;
+      font-size: 4rem;
+      z-index: 1;
+      top: 5%;
+      left: 50%;
+      color: white;
+      text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
+        1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+      text-decoration: none;
+    }
+
+    @media screen and (max-width: 692px) {
+      img#cover {
+        width: 75vw;
+      }
+    }
+  </style>
+
+  <body>
+    <img id="cover" src="image.png" />
+    <a id="email" href="mailto:hello@world.com">Hey, there, I'm here!</a>
+  </body>
+
+  <script>
+    window.onload = function () {
+      const imgElement = document.getElementById("cover");
+      const emailElement = document.getElementById("email");
+
+      imgElement.style.top = getRandomY(imgElement) + "px";
+      imgElement.style.left = getRandomX(imgElement) + "px";
+      emailElement.style.top = getRandomY(emailElement) + "px";
+      emailElement.style.left = getRandomX(emailElement) + "px";
+    };
+
+    function getRandomY(element) {
+      const clientHeight = element.clientHeight;
+      const random = Math.random();
+      let randomY = window.innerHeight * random;
+
+      let y = randomY - clientHeight;
+
+      if (y < 0) {
+        y = 0;
+      } else if (y + clientHeight > window.innerHeight) {
+        y = window.innerHeight - clientHeight;
+      }
+
+      return y;
+    }
+
+    function getRandomX(element) {
+      const clientWidth = element.clientWidth;
+      const random = Math.random();
+      let randomX = window.innerWidth * random;
+
+      let x = randomX - clientWidth;
+
+      if (x < 0) {
+        x = 0;
+      } else if (x + clientWidth > window.innerWidth) {
+        x = window.innerWidth - clientWidth;
+      }
+      return x;
+    }
+  </script>
+</html>
